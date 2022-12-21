@@ -3,7 +3,7 @@ const express = require("express")
 const app = express();
 var cors = require('cors')
 
-app.use(cors())
+
 const connectDb = require("./db/connect")
 const PORT = process.env.PORT || 5000
 app.get("/", (req, res) => {
@@ -14,7 +14,7 @@ const products_routes = require("./routes/product")
 // Meddle ware or set router
 
 app.use("/api/products", products_routes)
-
+app.use(cors())
 const start = async () => {
     try {
         await connectDb(process.env.MONGODB_URL);
